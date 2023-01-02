@@ -14,3 +14,5 @@ lib/
 tmp/
 tests/test262/harness/
 tests/test262/test/
+package-lock.json
+locale-data/
