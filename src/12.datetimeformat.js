@@ -1153,7 +1153,7 @@ function ToLocalTime(date, calendar, timeZone) {
             descs = new Record(),
             props = [
                 'locale', 'calendar', 'numberingSystem', 'timeZone', 'hour12', 'weekday',
-                'era', 'year', 'month', 'day', 'hour', 'minute', 'second', 'timeZoneName'
+                'era', 'year', 'month', 'day', 'hour', 'minute', 'second', 'timeZoneName','pattern'
             ],
             internal = this !== null && typeof this === 'object' && getInternalProperties(this);
 
