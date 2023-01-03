@@ -1189,7 +1189,7 @@ const getFormatFromOptions=(options)=>{
             if (hop.call(internal, prop = '[[' + props[i] + ']]'))
                 descs[props[i]] = { value: internal[prop], writable: true, configurable: true, enumerable: true };
         }
-        descs['resolvedFormat']={ value:getFormatFromOptions(objCreate({}, descs)), writable: true, configurable: true, enumerable: true };
+        //descs['resolvedFormat']={ value:getFormatFromOptions(objCreate({}, descs)), writable: true, configurable: true, enumerable: true };
 
         return objCreate({}, descs);
     }
