@@ -1137,6 +1137,29 @@ function ToLocalTime(date, calendar, timeZone) {
     });
 }
 
+
+
+const dateTimeParts = {
+    weekday:  {"narrow":"EEEEE", "short":"EEE", "long":"EEEE" },
+        era: { "narrow":"GGGGG", "short":"GG", "long":"GGGG"},
+       year: { "2-digit":"yy", "numeric":"yyyy" },
+      month: { "2-digit":"MM", "numeric":"M", "narrow":"MMMMM", "short":"MMM", "long":"MMMM" },
+        day: { "2-digit":"dd", "numeric":"d" },
+       hour: { "2-digit":"HH", "numeric" :"H"},
+     minute: { "2-digit":"mm", "numeric":"m" },
+     second: { "2-digit":"ss", "numeric":"s" },
+  timeZoneName: { "short":"zzz", "long":"zzzz" }
+  };
+
+const getFormatFromOptions=(options)=>{
+    const resolvedOptions = Intl.DateTimeFormat(undefined, options).resolvedOptions();
+    let format = resolvedOptions.pattern;
+    Object.keys(dateTimeParts).forEach((key) => {
+        format = format.replace(`{${key}}`,(dateTimeParts[key][resolvedOptions[key]]));
+    });
+    return format;
+};
+
 /**
  * The function returns a new object whose properties and attributes are set as if
  * constructed by an object literal assigning to each of the following properties the
@@ -1149,6 +1172,7 @@ function ToLocalTime(date, calendar, timeZone) {
     writable: true,
     configurable: true,
     value: function () {
+
         let prop,
             descs = new Record(),
             props = [
@@ -1165,6 +1189,7 @@ function ToLocalTime(date, calendar, timeZone) {
             if (hop.call(internal, prop = '[[' + props[i] + ']]'))
                 descs[props[i]] = { value: internal[prop], writable: true, configurable: true, enumerable: true };
         }
+        descs['resolvedFormat']=getFormatFromOptions(objCreate({}, descs));
 
         return objCreate({}, descs);
     }
