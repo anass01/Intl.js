@@ -1152,10 +1152,9 @@ const dateTimeParts = {
   };
 
 const getFormatFromOptions=(options)=>{
-    const resolvedOptions = Intl.DateTimeFormat(undefined, options).resolvedOptions();
-    let format = resolvedOptions.pattern;
+    let format = options.pattern;
     Object.keys(dateTimeParts).forEach((key) => {
-        format = format.replace(`{${key}}`,(dateTimeParts[key][resolvedOptions[key]]));
+        format = format.replace(`{${key}}`,(dateTimeParts[key][options[key]]));
     });
     return format;
 };
@@ -1189,7 +1188,7 @@ const getFormatFromOptions=(options)=>{
             if (hop.call(internal, prop = '[[' + props[i] + ']]'))
                 descs[props[i]] = { value: internal[prop], writable: true, configurable: true, enumerable: true };
         }
-        //descs['resolvedFormat']={ value:getFormatFromOptions(objCreate({}, descs)), writable: true, configurable: true, enumerable: true };
+        descs['resolvedFormat']={ value:getFormatFromOptions(objCreate({}, descs)), writable: true, configurable: true, enumerable: true };
 
         return objCreate({}, descs);
     }
