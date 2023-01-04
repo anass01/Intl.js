@@ -4489,7 +4489,7 @@ var getFormatFromOptions = function getFormatFromOptions(options) {
 
         var prop = void 0,
             descs = new Record(),
-            props = ['locale', 'calendar', 'numberingSystem', 'timeZone', 'hour12', 'weekday', 'era', 'year', 'month', 'day', 'hour', 'minute', 'second', 'timeZoneName', 'pattern'],
+            props = ['locale', 'calendar', 'numberingSystem', 'timeZone', 'hour12', 'weekday', 'era', 'year', 'month', 'day', 'hour', 'minute', 'second', 'timeZoneName', 'pattern','boundFormat'],
             internal = this !== null && babelHelpers$1["typeof"](this) === 'object' && getInternalProperties(this);
 
         // Satisfy test 12.3_b
